@@ -157,31 +157,30 @@ const HomePage = () => {
 
     useEffect(() => {
         
-        // if (section == 3 && !sessionStorage.getItem("accessToken")) {
+        if (section == 3 && !sessionStorage.getItem("accessToken")) {
+            let body = {
+                grant_type: "client_credentials",
+                client_id: import.meta.env.VITE_CLIENT_ID,
+                client_secret: import.meta.env.VITE_CLIENT_SECRET
+            }
 
-        //     let body = {
-        //         grant_type: "client_credentials",
-        //         client_id: import.meta.env.VITE_CLIENT_ID,
-        //         client_secret: import.meta.env.VITE_CLIENT_SECRET
-        //     }
+            setLoader(true)
 
-        //     setLoader(true)
-
-        //     axios.post("https://outpost.mappls.com/api/security/oauth/token", body, {
-        //         headers: {
-        //             Accept: "application/json",
-        //             'Content-Type': "application/json",
-        //         }
-        //     })
-        //         .then((res) => {
-        //             console.log("map key response: ", res)
-        //             sessionStorage.setItem("accessToken", res?.data?.access_token)
-        //         })
-        //         .catch((err) => {
-        //             console.log("map key error: ", err)
-        //         })
-        //         .finally(() => setLoader(false))
-        // }
+            axios.post("https://outpost.mappls.com/api/security/oauth/token", body, {
+                headers: {
+                    Accept: "application/json",
+                    'Content-Type': "application/json",
+                }
+            })
+                .then((res) => {
+                    console.log("map key response: ", res)
+                    sessionStorage.setItem("accessToken", res?.data?.access_token)
+                })
+                .catch((err) => {
+                    console.log("map key error: ", err)
+                })
+                .finally(() => setLoader(false))
+        }
     }, [section])
 
     return (
@@ -239,11 +238,11 @@ const HomePage = () => {
                                         <div className="flex items-center gap-2 mb-4">
                                             <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
                                             <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                            <button onClick={() => window.open(`/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                            <button onClick={() => window.open(` /mappleMapSdk/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
                                         </div>
                                         <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                             <iframe
-                                                src={`/assignment${toggle}`}
+                                                src={` /mappleMapSdk/assignment${toggle}`}
                                                 style={{ width: '100%', height: '80vh', border: 'none' }}
                                                 title={`Assignment ${toggle} Output`}
                                             />
@@ -312,11 +311,11 @@ const HomePage = () => {
                                                     <div className="flex items-center gap-2 mb-4">
                                                         <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
                                                         <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                                        <button onClick={() => window.open(`/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                                        <button onClick={() => window.open(` /mappleMapSdk/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
                                                     </div>
                                                     <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                                         <iframe
-                                                            src={`/assignment${toggle}`}
+                                                            src={` /mappleMapSdk/assignment${toggle}`}
                                                             style={{ width: '100%', height: '80vh', border: 'none' }}
                                                             title={`Assignment ${toggle} Output`}
                                                         />
