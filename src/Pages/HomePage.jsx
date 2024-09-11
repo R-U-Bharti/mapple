@@ -238,11 +238,11 @@ const HomePage = () => {
                                         <div className="flex items-center gap-2 mb-4">
                                             <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
                                             <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                            <button onClick={() => window.open(` /mappleMapSdk/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                            <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
                                         </div>
                                         <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                             <iframe
-                                                src={` /mappleMapSdk/assignment${toggle}`}
+                                                src={`/mapple/assignment${toggle}`}
                                                 style={{ width: '100%', height: '80vh', border: 'none' }}
                                                 title={`Assignment ${toggle} Output`}
                                             />
@@ -311,11 +311,11 @@ const HomePage = () => {
                                                     <div className="flex items-center gap-2 mb-4">
                                                         <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
                                                         <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                                        <button onClick={() => window.open(` /mappleMapSdk/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                                        <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
                                                     </div>
                                                     <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                                         <iframe
-                                                            src={` /mappleMapSdk/assignment${toggle}`}
+                                                            src={`/mapple/assignment${toggle}`}
                                                             style={{ width: '100%', height: '80vh', border: 'none' }}
                                                             title={`Assignment ${toggle} Output`}
                                                         />
@@ -353,7 +353,7 @@ const HomePage = () => {
                                     </> :
                                     <>
                                         <div className="py-2 text-center font-medium bg-slate-500 animate-pulse">
-                                            Loading...
+                                            Fetching Token...
                                         </div>
                                     </>
                             )

@@ -39,7 +39,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter basename='/mappleMapSdk'>
+      <BrowserRouter basename='/mapple'>
         <Routes>
           <Route index element={<HomePage />} />
           {
