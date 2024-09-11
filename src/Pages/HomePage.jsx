@@ -25,6 +25,7 @@ const HomePage = () => {
     const [viewType, setViewType] = useState('output')
     const [section, setSection] = useState('1')
     const [loader, setLoader] = useState(false)
+    const [ifLoader, setIfLoader] = useState('')
 
     const assignments1 = [
         { id: 10, count: 1, question: "How to integrate Mappls SDKs?" },
@@ -53,10 +54,12 @@ const HomePage = () => {
     const toggleFun = (id) => {
         if (toggle == id) {
             setToggle('')
+            setIfLoader('')
         }
         else {
             setViewType('output')
             setToggle(id)
+            setIfLoader(id)
         }
     }
 
@@ -156,7 +159,7 @@ const HomePage = () => {
     `
 
     useEffect(() => {
-        
+
         if (section == 3 && !sessionStorage.getItem("accessToken")) {
             let body = {
                 grant_type: "client_credentials",
@@ -231,17 +234,18 @@ const HomePage = () => {
                             section == 2 && assignments2.map((elem, index) =>
                                 <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-10 py-4`}>
                                     <div key={index} onClick={() => toggleFun(elem.id)} className={`${toggle == elem.id && "pb-4"} flex items-center justify-between`}>
-                                        <p>{elem.id}. &nbsp;{elem.question}</p>
+                                        <p>{elem.id}. &nbsp;{elem.question} {ifLoader == elem.id && <span className="italic text-sm">(Loading Output)</span>}</p>
                                         <button className="px-4 text-sm bg-amber-800 border py-1 rounded hover:bg-amber-600">{toggle == elem.id ? "Hide" : "View"}</button>
                                     </div>
                                     <div className={`${toggle == elem.id ? '' : 'hidden'} `}>
                                         <div className="flex items-center gap-2 mb-4">
-                                            <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
-                                            <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                            <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                            <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
+                                            <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
+                                            <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">Open in new tab</button>
                                         </div>
                                         <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                             <iframe
+                                                onLoad={() => setIfLoader('')}
                                                 src={`/mapple/assignment${toggle}`}
                                                 style={{ width: '100%', height: '80vh', border: 'none' }}
                                                 title={`Assignment ${toggle} Output`}
@@ -304,17 +308,18 @@ const HomePage = () => {
                                         {assignments3.map((elem, index) =>
                                             <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-10 py-4`}>
                                                 <div key={index} onClick={() => toggleFun(elem.id)} className={`${toggle == elem.id && "pb-4"} flex items-center justify-between`}>
-                                                    <p>{elem.count}. &nbsp;{elem.question}</p>
+                                                    <p>{elem.count}. &nbsp;{elem.question} {ifLoader == elem.id && <span className="italic text-sm">(Loading Output)</span>}</p>
                                                     <button className="px-4 text-sm bg-amber-800 border py-1 rounded hover:bg-amber-600">{toggle == elem.id ? "Hide" : "View"}</button>
                                                 </div>
                                                 <div className={`${toggle == elem.id ? '' : 'hidden'} `}>
                                                     <div className="flex items-center gap-2 mb-4">
-                                                        <button onClick={() => viewFun('code')} className="px-4 py-1 bg-slate-900 hover:bg-slate-500 border border-slate-900 text-xs rounded ">Code</button>
-                                                        <button onClick={() => viewFun('output')} className="px-4 py-1 bg-violet-900 hover:bg-violet-500 border border-violet-900 text-xs rounded ">Output</button>
-                                                        <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 bg-blue-900 hover:bg-blue-500 border border-blue-900 text-xs rounded ">Open in new tab</button>
+                                                        <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
+                                                        <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
+                                                        <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">Open in new tab</button>
                                                     </div>
                                                     <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                                         <iframe
+                                                            onLoad={() => setIfLoader('')}
                                                             src={`/mapple/assignment${toggle}`}
                                                             style={{ width: '100%', height: '80vh', border: 'none' }}
                                                             title={`Assignment ${toggle} Output`}

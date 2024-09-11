@@ -1,21 +1,21 @@
+import { Suspense, lazy } from 'react'
 import 'animate.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import HomePage from "./Pages/HomePage"
-import Assignment1 from './Pages/Assignment1'
-import Assignment2 from './Pages/Assignment2'
-import Assignment3 from './Pages/Assignment3'
-import Assignment4 from './Pages/Assignment4'
-import Assignment5 from './Pages/Assignment5'
-import Assignment6 from './Pages/Assignment6'
-import Assignment7 from './Pages/Assignment7'
-import Assignment8 from './Pages/Assignment8'
-import Assignment9 from './Pages/Assignment9'
-import Assignment31 from './Pages/Assignment31'
-import Assignment32 from './Pages/Assignment32'
-import Assignment33 from './Pages/Assignment33'
-import Assignment34 from './Pages/Assignment34'
-import Assignment35 from './Pages/Assignment35'
-import { useEffect } from 'react'
+const HomePage = lazy(() => import("./Pages/HomePage"));
+const Assignment1 = lazy(() => import('./Pages/Assignment1'));
+const Assignment2 = lazy(() => import('./Pages/Assignment2'));
+const Assignment3 = lazy(() => import('./Pages/Assignment3'));
+const Assignment4 = lazy(() => import('./Pages/Assignment4'));
+const Assignment5 = lazy(() => import('./Pages/Assignment5'));
+const Assignment6 = lazy(() => import('./Pages/Assignment6'));
+const Assignment7 = lazy(() => import('./Pages/Assignment7'));
+const Assignment8 = lazy(() => import('./Pages/Assignment8'));
+const Assignment9 = lazy(() => import('./Pages/Assignment9'));
+const Assignment31 = lazy(() => import('./Pages/Assignment31'));
+const Assignment32 = lazy(() => import('./Pages/Assignment32'));
+const Assignment33 = lazy(() => import('./Pages/Assignment33'));
+const Assignment34 = lazy(() => import('./Pages/Assignment34'));
+const Assignment35 = lazy(() => import('./Pages/Assignment35'));
 
 const App = () => {
 
@@ -40,14 +40,16 @@ const App = () => {
   return (
     <>
       <BrowserRouter basename='/mapple'>
-        <Routes>
-          <Route index element={<HomePage />} />
-          {
-            routes.map((route, index) =>
-              <Route key={index} path={route.path} element={route.element} />
-            )
-          }
-        </Routes>
+        <Suspense fallback={<div className='h-screen w-screen flex items-center justify-center text-white italic'>Component Loading...</div>}>
+          <Routes>
+            <Route index element={<HomePage />} />
+            {
+              routes.map((route, index) =>
+                <Route key={index} path={route.path} element={route.element} />
+              )
+            }
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </>
   )
