@@ -192,7 +192,7 @@ const HomePage = () => {
                 <div className="max-w-[1366px] w-full px-2">
 
                     <div className="w-full flex justify-center">
-                        <h1 className='text-2xl font-medium text-center py-2 mt-2 mb-6 border-b w-max px-10'>Mappls' Assignments By <span className="font-bold text-amber-400">R U Bharti</span></h1>
+                        <h1 className='text-2xl font-medium text-center py-2 mt-2 mb-6 border-b w-max px-10'>Mappls' Map By <span className="font-bold text-amber-400">R U Bharti</span></h1>
                     </div>
 
                     <div className="w-full flex items-center justify-between mb-4 ">
