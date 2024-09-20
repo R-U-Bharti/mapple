@@ -6,7 +6,7 @@ import { Grid } from 'react-loader-spinner';
 const mapplsClassObject = new mappls();
 const mapplsPluginObject = new mappls_plugin();
 
-const Assignment2 = ({render}) => {
+const Assignment2 = () => {
 
     const mapRef = useRef(null);
     const [isMapLoaded, setIsMapLoaded] = useState(false);
