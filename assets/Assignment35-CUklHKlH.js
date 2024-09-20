@@ -1,0 +1,7 @@
+import{r as s,j as e}from"./index-D-K0FS2t.js";import{$ as d,m as c}from"./module-Bd-rYyGq.js";const a=new c,h=({render:m})=>{const r=s.useRef(null),[o,n]=s.useState(!1),l={map:!0,layer:"raster",version:"3.0",libraries:["polydraw"],plugins:["direction"]};return s.useEffect(()=>(a.initialize("15bd20573fc0e4653bf6220f599a161d",l,()=>{const i=a.Map({id:"map",properties:{center:[28.5512908,77.26809282],zoom:8}});i.on("load",()=>{n(!0);const t=new a.Marker({position:{lat:28.5512908,lng:77.26809282},map:i});let p=`
+        <div style='color: black;'>
+        <h4 style='font-weight: 600; border-bottom: 1px solid gray;'>Marker Info with Image</h4>
+        <p>Some details about this marker.</p>
+        <img src='/vite.svg' alt='image' />
+        </div>
+        `;t.setPosition({lat:28.454,lng:77.5454}),t.setIcon("/pin.png"),t.setPopup(p),t()}),r.current=i}),()=>{r.current&&r.current.remove()}),[]),e.jsx(e.Fragment,{children:e.jsxs("div",{id:"map",style:{width:"100%",height:"100vh",display:"inline-block"},children:[!o&&e.jsxs("div",{className:"",style:{display:"flex",flexDirection:"column",gap:"10px",justifyContent:"center",alignItems:"center",height:"100vh"},children:[e.jsx(d,{visible:!0,height:"80",width:"80",color:"#ffffff",ariaLabel:"grid-loading",radius:"12.5",wrapperClass:"grid-wrapper"}),e.jsx("div",{style:{fontWeight:"500",fontSize:"14px",color:"white"},children:"Loading Map..."})]}),o]})})};export{h as default};
