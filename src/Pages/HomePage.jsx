@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { a11yDark as coy } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import assignmentRaw1 from './Assignment1.jsx?raw';
 import assignmentRaw2 from './Assignment2.jsx?raw';
@@ -17,6 +17,7 @@ import assignmentRaw32 from './Assignment32.jsx?raw';
 import assignmentRaw33 from './Assignment33.jsx?raw';
 import assignmentRaw34 from './Assignment34.jsx?raw';
 import assignmentRaw35 from './Assignment35.jsx?raw';
+
 import axios from "axios";
 
 const HomePage = () => {
@@ -186,6 +187,65 @@ const HomePage = () => {
         }
     }, [section])
 
+    const [copySuccess, setCopySuccess] = useState(false);
+
+    const copyToClipboard = (id) => {
+        let file;
+
+        if (id == 1) {
+            file = assignmentRaw1
+        }
+        if (id == 2) {
+            file = assignmentRaw2
+        }
+        if (id == 3) {
+            file = assignmentRaw3
+        }
+        if (id == 4) {
+            file = assignmentRaw4
+        }
+        if (id == 5) {
+            file = assignmentRaw5
+        }
+        if (id == 6) {
+            file = assignmentRaw6
+        }
+        if (id == 7) {
+            file = assignmentRaw7
+        }
+        if (id == 8) {
+            file = assignmentRaw8
+        }
+        if (id == 9) {
+            file = assignmentRaw9
+        }
+
+        if (id == 31) {
+            file = assignmentRaw31
+        }
+        if (id == 32) {
+            file = assignmentRaw32
+        }
+        if (id == 33) {
+            file = assignmentRaw33
+        }
+        if (id == 34) {
+            file = assignmentRaw34
+        }
+        if (id == 35) {
+            file = assignmentRaw35
+        }
+
+        navigator.clipboard.writeText(file)
+            .then(() => {
+                setCopySuccess(true);
+                setTimeout(() => setCopySuccess(false), 2000); // Clear after 2 seconds
+            })
+            .catch((err) => {
+                console.error("Failed to copy: ", err);
+            });
+    };
+
     return (
         <>
             <div className="w-screen flex justify-center *:text-slate-50">
@@ -241,7 +301,7 @@ const HomePage = () => {
                                         <div className="flex items-center gap-2 mb-4">
                                             <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
                                             <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
-                                            <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">Open in new tab</button>
+                                            <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
                                         </div>
                                         <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                             <iframe
@@ -315,7 +375,7 @@ const HomePage = () => {
                                                     <div className="flex items-center gap-2 mb-4">
                                                         <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
                                                         <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
-                                                        <button onClick={() => window.open(`/mapple/assignment${elem.id}`, '_blank')} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">Open in new tab</button>
+                                                        <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
                                                     </div>
                                                     <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                                         <iframe
