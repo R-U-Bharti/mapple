@@ -19,14 +19,17 @@ import assignmentRaw34 from './Assignment34.jsx?raw';
 import assignmentRaw35 from './Assignment35.jsx?raw';
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
 
     const [toggle, setToggle] = useState('')
-    const [viewType, setViewType] = useState('output')
+    const [viewType, setViewType] = useState('code')
     const [section, setSection] = useState('1')
     const [loader, setLoader] = useState(false)
     const [ifLoader, setIfLoader] = useState('')
+    
+    const navigate = useNavigate()
 
     const assignments1 = [
         { id: 10, count: 1, question: "How to integrate Mappls SDKs?" },
@@ -58,7 +61,7 @@ const HomePage = () => {
             setIfLoader('')
         }
         else {
-            setViewType('output')
+            setViewType('code')
             setToggle(id)
             setIfLoader(id)
         }
@@ -300,17 +303,17 @@ const HomePage = () => {
                                     <div className={`${toggle == elem.id ? '' : 'hidden'} `}>
                                         <div className="flex items-center gap-2 mb-4">
                                             <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
-                                            <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
-                                            <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
+                                            <button onClick={() => navigate(`/assignment${toggle}`)} className={`px-4 py-1 shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>View Output</button>
+                                            <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 hover:bg-blue-700 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
                                         </div>
-                                        <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
+                                        {/* <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                             <iframe
                                                 onLoad={() => setIfLoader('')}
                                                 src={`/mapple/assignment${toggle}`}
                                                 style={{ width: '100%', height: '80vh', border: 'none' }}
                                                 title={`Assignment ${toggle} Output`}
                                             />
-                                        </div>
+                                        </div> */}
                                         <div className={`${viewType == 'code' ? 'block h-[80vh] overflow-auto' : 'hidden'}`}>
                                             {toggle == 1 &&
                                                 <SyntaxHighlighter language="javascript" style={coy}>
@@ -374,17 +377,17 @@ const HomePage = () => {
                                                 <div className={`${toggle == elem.id ? '' : 'hidden'} `}>
                                                     <div className="flex items-center gap-2 mb-4">
                                                         <button onClick={() => viewFun('code')} className={`px-4 py-1 ${viewType == 'code' ? 'bg-gray-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-gray-900 border hover:text-white border-slate-900 text-xs rounded `}>Code</button>
-                                                        <button onClick={() => viewFun('output')} className={`px-4 py-1 ${viewType == 'output' ? 'bg-violet-900' : 'text-white'} shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>Output</button>
-                                                        <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
+                                                        <button onClick={() => navigate(`/assignment${toggle}`)} className={`px-4 py-1 shadow-[0px_0px_15px_rgba(0,0,0,0.3)] font-medium hover:bg-violet-900 hover:text-white border border-violet-900 text-xs rounded `}>View Output</button>
+                                                        <button onClick={() => copyToClipboard(toggle)} className="px-4 py-1 text-sky-50 font-medium border border-blue-800 hover:bg-blue-700 text-xs rounded ">{copySuccess ? "Copied" : "Copy"} Code</button>
                                                     </div>
-                                                    <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
+                                                    {/* <div className={`${viewType == 'output' ? '' : 'hidden'}`}>
                                                         <iframe
                                                             onLoad={() => setIfLoader('')}
                                                             src={`/mapple/assignment${toggle}`}
                                                             style={{ width: '100%', height: '80vh', border: 'none' }}
                                                             title={`Assignment ${toggle} Output`}
                                                         />
-                                                    </div>
+                                                    </div> */}
                                                     <div className={`${viewType == 'code' ? 'block h-[80vh] overflow-auto' : 'hidden'}`}>
                                                         {toggle == 31 &&
                                                             <SyntaxHighlighter language="javascript" style={coy}>
