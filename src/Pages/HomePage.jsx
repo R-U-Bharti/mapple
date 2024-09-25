@@ -267,7 +267,7 @@ const HomePage = () => {
                     <div className='w-full flex flex-col flex-wrap gap-4 mb-4'>
                         {
                             section == 1 && assignments1.map((elem, index) =>
-                                <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-10 py-4`}>
+                                <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-3 md:px-10 py-4`}>
                                     <div key={index} onClick={() => toggleFun(elem.id)} className={`${toggle == elem.id && "pb-4"} flex items-center justify-between`}>
                                         <p>{elem.count}. &nbsp;{elem.question}</p>
                                         <button className="px-4 text-sm bg-amber-800 border py-1 rounded hover:bg-amber-600">{toggle == elem.id ? "Hide" : "View"}</button>
@@ -295,7 +295,7 @@ const HomePage = () => {
                             )}
                         {
                             section == 2 && assignments2.map((elem, index) =>
-                                <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-10 py-4`}>
+                                <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-3 md:px-10 py-4`}>
                                     <div key={index} onClick={() => toggleFun(elem.id)} className={`${toggle == elem.id && "pb-4"} flex items-center justify-between`}>
                                         <p>{elem.id}. &nbsp;{elem.question} {ifLoader == elem.id && <span className="italic text-sm">(Loading Output)</span>}</p>
                                         <button className="px-4 text-sm bg-amber-800 border py-1 rounded hover:bg-amber-600">{toggle == elem.id ? "Hide" : "View"}</button>
@@ -369,7 +369,7 @@ const HomePage = () => {
                                 !loader ?
                                     <>
                                         {assignments3.map((elem, index) =>
-                                            <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-10 py-4`}>
+                                            <div className={`animate__animated animate__slideInRight animate__faster border ${toggle == elem.id ? 'border-green-400 bg-green-600/90 text-white hover:shadow-[0px_0px_20px_rgba(0,255,0,0.8)] h-full' : 'border-red-400 text-red-100 hover:bg-red-600/90 hover:text-white hover:shadow-[0px_0px_20px_rgba(255,0,0,0.8)]'} cursor-pointer w-full px-3 md:px-10 py-4`}>
                                                 <div key={index} onClick={() => toggleFun(elem.id)} className={`${toggle == elem.id && "pb-4"} flex items-center justify-between`}>
                                                     <p>{elem.count}. &nbsp;{elem.question} {ifLoader == elem.id && <span className="italic text-sm">(Loading Output)</span>}</p>
                                                     <button className="px-4 text-sm bg-amber-800 border py-1 rounded hover:bg-amber-600">{toggle == elem.id ? "Hide" : "View"}</button>
